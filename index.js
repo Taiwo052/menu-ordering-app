@@ -1,6 +1,5 @@
 import { menuArray } from './data.js'
-// import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
-//   console.log(uuidv4());
+
 let hasOrdered = false
 
 document.addEventListener( 'click', function(e){
@@ -16,18 +15,24 @@ function addItem(item){
      orderObj = menuArray.filter(function(menu){
     return menu.id == item || menu.name == item
 })[0]
+    // console.log(orderObj)
     itemArray.push(orderObj)
-    getOrder(item)
+    // console.log(itemArray)
+    getOrder(itemArray)
+    render()
+
+
 }
 
 function getOrder(){
-    document.getElementById(`order-container`).classList.toggle('hidden')
-    getItem()
+    renderOrder()
+    document.getElementById(`order-container`).style.display = 'flex'
 }
 
 function getItem(){
     let yourOrder = ''
-    for(let menu of menuArray){
+    menuArray.forEach(function(menu){
+            console.log(menu.price)
     yourOrder += `  
                 <div class="order-item-name">
                     <h3>${menu.name}</h3>
@@ -36,10 +41,17 @@ function getItem(){
                 <h4 class="menu-count">${menu.quantity}x</h4>
                 <h4 class="menu-price">${menu.price*menu.quantity}$</h4>`
 
-    }
-    document.getElementById('order-item').innerHTML = yourOrder
-    
+    })
+        return yourOrder    
 }
+
+
+function renderOrder(){
+    document.getElementById('order-item').innerHTML = getItem()
+
+ }
+ renderOrder()
+
      
             
 function renderMenu(){
