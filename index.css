@@ -133,8 +133,8 @@ i{
 /* ----Order-container---- */
 
 
-.order-item-container{
-    display: flex;
+.order-container{
+    display: none;
     flex-direction: column;
     padding-top: 45px;
 }
@@ -143,11 +143,22 @@ i{
     margin-bottom: 64px;
 }
 
-.order-item{
+.items{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 31px;
+}
+
+.item-price{
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.order-items{
+    display: flex;
+    flex-direction: column;
 }
 
 .order-item-name{
@@ -175,6 +186,9 @@ i{
 }
 
 .items-total-price{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin-top: 14px;
 }
 
