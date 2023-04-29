@@ -1,49 +1,103 @@
 import { menuArray } from './data.js'
 
-let hasOrdered = false
+
+const itemArray = []
+// const totalPrice = 0
 
 document.addEventListener( 'click', function(e){
-    if(e.target.dataset.btn){
-        addItem(e.target.dataset.btn)
+    if(e.target.dataset.addBtn){
+        addItem(e.target.dataset.addBtn)
+        render()
+    }else if(e.target.dataset.removeBtn){
+        removeItem(e.target.dataset.removeBtn)
+        render()
     }
 })  
 
 function addItem(item){
     let orderObj = {}
-    let itemArray = []
 
-     orderObj = menuArray.filter(function(menu){
+    orderObj = menuArray.filter(function(menu){
     return menu.id == item || menu.name == item
 })[0]
-    // console.log(orderObj)
-    itemArray.push(orderObj)
-    // console.log(itemArray)
+        if(itemArray.includes(orderObj) ){
+        orderObj.quantity++   
+    }else{
+        itemArray.push(orderObj)
+        orderObj.quantity++
+    }
+    orderObj.quantity += !orderObj.quantity
+    theTotalPrice()
     getOrder(itemArray)
+
     render()
+    //  console.log(orderObj.price)
+}
+
+function removeItem(item) {
+    console.log(itemArray.indexOf(item))
+    
+    let i = itemArray.indexOf(item);
+    itemArray.splice(i);
+    console.log(itemArray)
+     itemTotalPrice()
+     getOrder()
+     render()
+};
 
 
+function itemTotalPrice(){
+    let itemPrice = theTotalPrice()--
+    console.log(itemPrice)
+}
+
+function getTotalPrice(){
+     let totalPrice = 0
+    // I loop through the itemArray to get the total price
+    itemArray.forEach(function(menu){
+            totalPrice += menu.price*menu.quantity
+    })
+    return totalPrice
+}
+
+function theTotalPrice(){
+    document.getElementById('total-price').innerHTML = `$${getTotalPrice()}`
 }
 
 function getOrder(){
     renderOrder()
     document.getElementById(`order-container`).style.display = 'flex'
+
 }
 
 function getItem(){
     let yourOrder = ''
-    menuArray.forEach(function(menu){
-            console.log(menu.price)
-    yourOrder += `  
-                <div class="order-item-name">
-                    <h3>${menu.name}</h3>
-                    <button id="remove-btn-${menu.id}" class="remove">remove</button>
+        
+    itemArray.forEach(function(menu){
+    yourOrder += `<div class="order-items" id="order-items">
+                <div class="items">
+                    <div class="order-item-name">
+                        <h3>${menu.name}</h3>
+                        <button id="remove-btn-${menu.id}" class="remove" data-remove-btn="${menu.id}">remove</button>
+                    </div>
+                    <div class="item-price">
+                        <h4 class="menu-count">x ${menu.quantity}</h4>
+                        <h4 class="menu-price">$${menu.price*menu.quantity}</h4>
+                    </div>
                 </div>
-                <h4 class="menu-count">${menu.quantity}x</h4>
-                <h4 class="menu-price">${menu.price*menu.quantity}$</h4>`
+                </div>
+                `
 
     })
         return yourOrder    
 }
+
+// function getTotalPrice(item){
+//     itemArray.filter(function(menu){
+//         totalPrice -= itemArray.price*itemArray.quantity;
+//     })
+// }
+
 
 
 function renderOrder(){
@@ -72,7 +126,7 @@ function renderMenu(){
                 </div>
             </div>
             <div class="item-icon">
-                <button id="icon-btn" class="icon-btn" data-btn="${menu.id}">
+                <button id="icon-btn" class="icon-btn" data-add-btn="${menu.id}">
                     <i class="fa-thin fa-plus"></i>
                 </button>
             </div>
