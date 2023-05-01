@@ -294,13 +294,13 @@ input::placeholder{
 
 .appreciation{
     background: #ECFDF5;
-    padding: 52px 58px;
+    padding: 52px 50px;
     margin-top: 45px;
     border-radius: 3px;
 }
 
 .appreciation-text{
-    font-family: Smythe;
+    font-family: 'Smythe', cursive;
     font-size: 32px;
     font-weight: 400;
     line-height: 17px;
