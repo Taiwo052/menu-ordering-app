@@ -1,5 +1,5 @@
 <html>
-    <head>
+    <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
         <!-----ICONS----->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-----FONT----->
@@ -29,6 +29,23 @@
                             <h4 id="total-price"></h4>
                         </div>
                     </div>
+                    <button type="submit" id="complete-order-btn" class="complete-order-btn">Complete Order</button>
+                </section>
+                <section class="payment-container" id="payment-container">
+                    <span class="payment-header">Enter card details</span>
+                    <form class="payment-form" id="payment-form">
+                        <div class="payment-input">
+                            <input type="text" id="card-name" name="card-name" placeholder="Enter your name" required>
+                            <input type="text" id="card-number" name="card-number" size="16"
+                                pattern="[1-9]{16,18}" placeholder="Enter card number" required>
+                            <input type="text" id="card-cvv" name="card-cvv" size="3"
+        	                    pattern="[1-9]{3}" placeholder="Enter CVV"  required>
+                        </div>
+                        <button type="submit" id="payment-btn" class="payment-btn">Pay</button>
+                    </form>
+                </section>
+                <section class="appreciation" id="appreciation">
+                    <span class="appreciation-text">Thanks, James! Your order is on its way!</span>
                 </section>
             </main>
     
