@@ -136,7 +136,7 @@ i{
 .order-container{
     display: none;
     flex-direction: column;
-    padding-top: 45px;
+    margin-top: 45px;
 }
 .order-heading{
     text-align: center;
@@ -282,12 +282,21 @@ input::placeholder{
     color: #757575;
 }
 
-.appreciation{
+
+.appreciation-container{
+    /* background: #ECFDF5;
+    padding: 52px 58px;
+    margin-top: 45px; */
     display: none;
-    margin-top: 45px;
+    text-align: center;
+    padding-top: 45px;
+}
+
+.appreciation{
     background: #ECFDF5;
     padding: 52px 58px;
-    text-align: center;
+    margin-top: 45px;
+    border-radius: 3px;
 }
 
 .appreciation-text{
